@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Customer Churn Predictor</title>
+
+<style>
+body {
+    font-family: 'Segoe UI';
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+}
+
+.container {
+    width: 400px;
+    margin: 60px auto;
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+h2 {
+    text-align: center;
+}
+
+label {
+    margin-top: 10px;
+    display: block;
+    font-weight: bold;
+}
+
+input, select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border-radius: 6px;
+}
+
+button {
+    width: 100%;
+    margin-top: 15px;
+    padding: 10px;
+    background: #4facfe;
+    color: white;
+    border: none;
+    border-radius: 8px;
+}
+
+.result {
+    text-align: center;
+    margin-top: 15px;
+    font-weight: bold;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+<h2>Churn Prediction</h2>
+
+<form action="/predict" method="post">
+
+<label>Tenure (Months)</label>
+<input type="number" name="tenure" required>
+
+<label>Monthly Charges</label>
+<input type="number" name="MonthlyCharges" required>
+
+<label>Total Charges</label>
+<input type="number" name="TotalCharges" required>
+
+<label>Contract Type</label>
+<select name="Contract">
+<option value="0">Month-to-Month</option>
+<option value="1">One Year</option>
+<option value="2">Two Year</option>
+</select>
+
+<label>Internet Service</label>
+<select name="InternetService">
+<option value="0">DSL</option>
+<option value="1">Fiber</option>
+<option value="2">No</option>
+</select>
+
+<label>Tech Support</label>
+<select name="TechSupport">
+<option value="0">No</option>
+<option value="1">Yes</option>
+</select>
+
+<label>Online Security</label>
+<select name="OnlineSecurity">
+<option value="0">No</option>
+<option value="1">Yes</option>
+</select>
+
+<label>Payment Method</label>
+<select name="PaymentMethod">
+<option value="0">Electronic Check</option>
+<option value="1">Mailed Check</option>
+<option value="2">Bank Transfer</option>
+<option value="3">Credit Card</option>
+</select>
+
+<button type="submit">Predict</button>
+
+</form>
+
+<div class="result">
+{{ prediction_text }}
+</div>
+
+</div>
+
+</body>
+</html>
