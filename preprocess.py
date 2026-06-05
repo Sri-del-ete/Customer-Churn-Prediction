@@ -1,4 +1,5 @@
 import pandas as pd
+from pandas.api.types import is_numeric_dtype
 from sklearn.preprocessing import LabelEncoder, StandardScaler
 import pickle
 
@@ -23,9 +24,9 @@ df["Churn"] = df["Churn"].map({"Yes": 1, "No": 0})
 
 # Encode categorical
 for col in df.columns:
-    if df[col].dtype == 'object':
+    if not is_numeric_dtype(df[col]):
         le = LabelEncoder()
-        df[col] = le.fit_transform(df[col])
+        df[col] = le.fit_transform(df[col].astype(str))
 
 # Split
 X = df.drop("Churn", axis=1)
